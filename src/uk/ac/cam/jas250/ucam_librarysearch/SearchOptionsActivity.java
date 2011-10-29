@@ -1,6 +1,10 @@
 package uk.ac.cam.jas250.ucam_librarysearch;
 
+import java.util.ArrayList;
+
+import uk.ac.cam.jas250.ucam_librarysearch.model.SearchOptions;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,6 +22,7 @@ public class SearchOptionsActivity extends Activity implements OnSeekBarChangeLi
 	ToggleButton tb_CollLibs;
 	ToggleButton tb_Affil;
 	ToggleButton tb_Elec;
+	ArrayList<ToggleButton>dbTogles;
 	
 	SeekBar sb_NumPages;
 	TextView txt_NumPages;
@@ -36,10 +41,26 @@ public class SearchOptionsActivity extends Activity implements OnSeekBarChangeLi
 	//HELPERS
 	private void connectUIElements(){
 		tb_ULDep = (ToggleButton)findViewById(R.id.tgl_ULDep);
+		tb_ULDep.setTag("UL & Dependents");
+		
 		tb_DepFac = (ToggleButton)findViewById(R.id.tgl_DepFac);
+		tb_DepFac.setTag("Departments and Faculties");
+		
 		tb_CollLibs = (ToggleButton)findViewById(R.id.tgl_CollLibs);
+		tb_CollLibs.setTag("College Libraries");
+		
 		tb_Affil = (ToggleButton)findViewById(R.id.tgl_Affil);
+		tb_Affil.setTag("Affiliated Institutions");
+		
 		tb_Elec = (ToggleButton)findViewById(R.id.tgl_Elec);
+		tb_Elec.setTag("Electronic Resource");
+		
+		dbTogles = new ArrayList<ToggleButton>();
+		dbTogles.add(tb_ULDep);
+		dbTogles.add(tb_DepFac);
+		dbTogles.add(tb_CollLibs);
+		dbTogles.add(tb_Affil);
+		dbTogles.add(tb_Elec);
 		
 		sb_NumPages = (SeekBar)findViewById(R.id.sk_NumPages);
 		txt_NumPages = (TextView)findViewById(R.id.txt_NumPages);
@@ -51,8 +72,7 @@ public class SearchOptionsActivity extends Activity implements OnSeekBarChangeLi
 		btn_Back.setOnClickListener(this);
 	}
 
-	public void onProgressChanged(SeekBar seekBar, int progress,
-			boolean fromUser) {
+	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 		txt_NumPages.setText(""+seekBar.getProgress());
 	}
 
@@ -66,6 +86,20 @@ public class SearchOptionsActivity extends Activity implements OnSeekBarChangeLi
 	}
 
 	public void onClick(View v) {
+		SearchOptions searchOptions = new SearchOptions();
+		try{
+			searchOptions.setNumPagesSelected(new Integer(txt_NumPages.getText()+""));
+		}catch(NumberFormatException e){
+			e.printStackTrace();
+		}
+		ArrayList<String> dbSelected = new ArrayList<String>();
+		for(ToggleButton tgl: dbTogles){
+			if(tgl.isSelected()){
+				String db = (String) tgl.getTag();
+				dbSelected.add(db);
+			}
+		}
+		
 		finish();
 	}
 }
