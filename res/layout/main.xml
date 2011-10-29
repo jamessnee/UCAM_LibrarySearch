@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    >
+    
+    <TextView
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:gravity="center_horizontal"
+    	android:text="University of Cambridge Library Search"
+    	android:textColor="#000000"
+    	android:textSize="18sp"
+    	/>
+    	
+    <!--
+    	FILL SOME SPACE WITH SOMETHING TO SEPARATE THE OBJECTS 
+     -->
+     
+     <TextView
+     	android:layout_width="fill_parent"
+     	android:layout_height="40sp"
+     	android:visibility="invisible"
+     	android:text="FILLINGSPACE" 
+     /><!-- Filling space -->
+    	
+    <TextView 
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:gravity="center_horizontal"
+    	android:text="Search Term"
+    	android:textColor="#000000"
+    	android:textSize="14sp"
+    />
+    
+    <EditText android:id="@+id/edTxt_SearchTerm"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:gravity="center_horizontal"
+    	android:maxLines="1"
+    	android:scrollHorizontally="true"
+    />
+    
+    <Button android:id="@+id/btn_Search"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:text="Find my stuff" 
+    />
+    
+    <Button android:id="@+id/btn_SearchOptions"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:text="Search Options" 
+    />
+    
+    <ProgressBar android:id="@+id/pb_SearchProgress"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_gravity="center_horizontal"
+    	android:max="100"
+    	android:progress="0"
+    	android:visibility="invisible" 
+    />
+    
+    <ImageView android:id="@+id/imgV_MainMenuBooksImageV" 
+    	android:layout_width="fill_parent" 
+    	android:layout_height="wrap_content" 
+    	android:src="@drawable/books"/>
+</LinearLayout>
